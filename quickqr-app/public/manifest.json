@@ -1,0 +1,30 @@
+{
+  "name": "QuickQR - QR코드 생성기 & 스캐너",
+  "short_name": "QuickQR",
+  "description": "QR코드를 빠르게 생성하고 스캔하세요. URL, WiFi, 연락처, 이메일 등 다양한 유형 지원.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F8F9FE",
+  "theme_color": "#6C5CE7",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    },
+    {
+      "src": "/icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "categories": ["utilities"],
+  "lang": "ko",
+  "dir": "ltr"
+}

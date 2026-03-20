@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { useI18n } from './hooks/useI18n';
+import { useAds } from './hooks/useAds';
 import type { QRType, QRData, QRStyle } from './types';
 import { DEFAULT_STYLE } from './utils/constants';
 import {
@@ -31,8 +32,13 @@ type Tab = 'generate' | 'scan' | 'history' | 'settings';
 
 function App() {
   const { lang, setLang, t } = useI18n();
+  const { initAds, showBanner, maybeShowInterstitial } = useAds();
   const [tab, setTab] = useState<Tab>('generate');
   const [toast, setToast] = useState('');
+
+  useEffect(() => {
+    initAds().then(() => showBanner());
+  }, [initAds, showBanner]);
 
   /* Generator state */
   const [qrType, setQrType] = useState<QRType>('url');
@@ -131,7 +137,8 @@ function App() {
     };
     setHistory(addToHistory(item));
     showToast(t('common.download'));
-  }, [qrDataUrl, qrType, buildContent, t, showToast]);
+    maybeShowInterstitial();
+  }, [qrDataUrl, qrType, buildContent, t, showToast, maybeShowInterstitial]);
 
   const handleCopyQR = useCallback(async () => {
     if (!qrDataUrl) return;
